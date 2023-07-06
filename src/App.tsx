@@ -1,8 +1,29 @@
-import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+
+import { SpreadsheetData } from "./types/index.d";
 
 function App() {
+  const [spreadsheetData, setSpreadsheetData] = useState<SpreadsheetData>([]);
+
+  useEffect(() => {
+    const fetchSpreadsheetData = async () => {
+      try {
+        const response = await axios.get(
+          "https://www.wix.com/_serverless/hiring-task-spreadsheet-evaluator/sheets"
+        );
+        const fetchedData = response.data;
+        console.log(fetchedData.sheets);
+        setSpreadsheetData(fetchedData.sheets);
+      } catch (error) {
+        console.error("Error fetching spreadsheet data:", error);
+      }
+    };
+
+    fetchSpreadsheetData();
+  }, []);
+
   return (
     <div className="App">
       <header className="App-header">
