@@ -4,8 +4,11 @@ import axios from "axios";
 
 import { SpreadsheetData } from "./types/index.d";
 
+import { computeSpreadsheet } from "./functions/computeSpreadsheet";
+
 function App() {
   const [spreadsheetData, setSpreadsheetData] = useState<SpreadsheetData>([]);
+  const [computedResult, setComputedResult] = useState<SpreadsheetData>([]);
 
   useEffect(() => {
     const fetchSpreadsheetData = async () => {
@@ -23,6 +26,12 @@ function App() {
 
     fetchSpreadsheetData();
   }, []);
+
+  useEffect(() => {
+    const result = computeSpreadsheet(spreadsheetData);
+    console.log(result);
+    setComputedResult(result);
+  }, [spreadsheetData]);
 
   return (
     <div className="App">
