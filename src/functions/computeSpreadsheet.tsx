@@ -7,8 +7,10 @@ import {
 
 import { getLetterIndex } from "./getLetterIndex";
 import { checkCellA1Format } from "./checkCellA1Format";
+
 import { calculateSum } from "./calculateSum";
 import { calculateMultiply } from "./calculateMultiply";
+import { calculateDivide } from "./calculateDivide";
 
 export function computeSpreadsheet(
   spreadsheets: SpreadsheetData
@@ -27,20 +29,20 @@ export function computeSpreadsheet(
         if (typeof cell === "string" && cell.startsWith("=")) {
           try {
             const formula = cell.slice(1); // Remove the "=" sign from formulas
-            console.log(formula);
+            // console.log(formula);
             // check if cell is A1 notation
             if (checkCellA1Format(formula)) {
-              console.log(
-                formula +
-                  ", fomula index:" +
-                  formula.charAt(1) +
-                  ", index: " +
-                  index +
-                  ", value: " +
-                  row[getLetterIndex(formula.charAt(0))] +
-                  ", value from matrix: " +
-                  spreadsheet.data[index][getLetterIndex(formula.charAt(0))]
-              );
+              // console.log(
+              //   formula +
+              //     ", fomula index:" +
+              //     formula.charAt(1) +
+              //     ", index: " +
+              //     index +
+              //     ", value: " +
+              //     row[getLetterIndex(formula.charAt(0))] +
+              //     ", value from matrix: " +
+              //     spreadsheet.data[index][getLetterIndex(formula.charAt(0))]
+              // );
               computedRow.push(
                 spreadsheet.data[index][getLetterIndex(formula.charAt(0))]
               );
@@ -57,6 +59,12 @@ export function computeSpreadsheet(
                 computedRow.push(computedCell);
               } else if (formulaFunction === "MULTIPLY") {
                 const computedCell: CellValue = calculateMultiply(
+                  formula,
+                  spreadsheet
+                );
+                computedRow.push(computedCell);
+              } else if (formulaFunction === "DIVIDE") {
+                const computedCell: CellValue = calculateDivide(
                   formula,
                   spreadsheet
                 );
