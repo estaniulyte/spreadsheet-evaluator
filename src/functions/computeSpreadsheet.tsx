@@ -11,6 +11,7 @@ import { checkCellA1Format } from "./checkCellA1Format";
 import { calculateSum } from "./calculateSum";
 import { calculateMultiply } from "./calculateMultiply";
 import { calculateDivide } from "./calculateDivide";
+import { calculateGT } from "./calculateGT";
 
 export function computeSpreadsheet(
   spreadsheets: SpreadsheetData
@@ -65,6 +66,12 @@ export function computeSpreadsheet(
                 computedRow.push(computedCell);
               } else if (formulaFunction === "DIVIDE") {
                 const computedCell: CellValue = calculateDivide(
+                  formula,
+                  spreadsheet
+                );
+                computedRow.push(computedCell);
+              } else if (formulaFunction === "GT") {
+                const computedCell: CellValue = calculateGT(
                   formula,
                   spreadsheet
                 );
