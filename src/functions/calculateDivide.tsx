@@ -13,10 +13,16 @@ export function calculateDivide(
     return "#ERROR: Two values excepted. Got " + divideElements.length;
   var dividend: number = 0;
   let divisor: number = 1;
-  if (parseInt(divideElements[0])) dividend = parseInt(divideElements[0])
-    else dividend = spreadsheet.data[parseInt(divideElements[0].charAt(1)) - 1][getLetterIndex(divideElements[0].charAt(0))] as number;
-  if (parseInt(divideElements[1])) divisor = parseInt(divideElements[1])
-    else divisor = spreadsheet.data[parseInt(divideElements[1].charAt(1)) - 1][getLetterIndex(divideElements[1].charAt(0))] as number;
-  
-  return parseFloat((dividend / divisor).toFixed(7));;
+  if (parseInt(divideElements[0])) dividend = parseInt(divideElements[0]);
+  else
+    dividend = spreadsheet.data[parseInt(divideElements[0].charAt(1)) - 1][
+      getLetterIndex(divideElements[0].charAt(0))
+    ] as number;
+  if (parseInt(divideElements[1])) divisor = parseInt(divideElements[1]);
+  else
+    divisor = spreadsheet.data[parseInt(divideElements[1].charAt(1)) - 1][
+      getLetterIndex(divideElements[1].charAt(0))
+    ] as number;
+
+  return parseFloat((dividend / divisor).toFixed(7));
 }
