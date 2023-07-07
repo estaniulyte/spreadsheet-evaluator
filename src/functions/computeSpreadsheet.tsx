@@ -12,6 +12,7 @@ import { calculateSum } from "./calculateSum";
 import { calculateMultiply } from "./calculateMultiply";
 import { calculateDivide } from "./calculateDivide";
 import { calculateGT } from "./calculateGT";
+import { calculateEQ } from "./calculateEQ";
 
 export function computeSpreadsheet(
   spreadsheets: SpreadsheetData
@@ -72,6 +73,12 @@ export function computeSpreadsheet(
                 computedRow.push(computedCell);
               } else if (formulaFunction === "GT") {
                 const computedCell: CellValue = calculateGT(
+                  formula,
+                  spreadsheet
+                );
+                computedRow.push(computedCell);
+              } else if (formulaFunction === "EQ") {
+                const computedCell: CellValue = calculateEQ(
                   formula,
                   spreadsheet
                 );
