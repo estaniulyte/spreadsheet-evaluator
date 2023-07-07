@@ -7,7 +7,6 @@ export function calculateDivide(
   spreadsheet: SpreadsheetObject
 ): number | string {
   var divideElements = formula.split(/[(,)]/).map((item) => item.trim()); // remove empty spaces
-  console.log(divideElements)
   divideElements.shift(); // remove function name
   divideElements.pop(); // remove empty space
   if (divideElements.length !== 2)
