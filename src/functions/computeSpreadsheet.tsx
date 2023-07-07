@@ -13,6 +13,7 @@ import { calculateMultiply } from "./calculateMultiply";
 import { calculateDivide } from "./calculateDivide";
 import { calculateGT } from "./calculateGT";
 import { calculateEQ } from "./calculateEQ";
+import { calculateNOT } from "./calculateNOT";
 
 export function computeSpreadsheet(
   spreadsheets: SpreadsheetData
@@ -79,6 +80,12 @@ export function computeSpreadsheet(
                 computedRow.push(computedCell);
               } else if (formulaFunction === "EQ") {
                 const computedCell: CellValue = calculateEQ(
+                  formula,
+                  spreadsheet
+                );
+                computedRow.push(computedCell);
+              } else if (formulaFunction === "NOT") {
+                const computedCell: CellValue = calculateNOT(
                   formula,
                   spreadsheet
                 );
