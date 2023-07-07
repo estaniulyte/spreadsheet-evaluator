@@ -1,4 +1,3 @@
-import * as math from "mathjs";
 import {
   SpreadsheetObject,
   ComputedResult,
@@ -9,6 +8,7 @@ import {
 import { getLetterIndex } from "./getLetterIndex";
 import { checkCellA1Format } from "./checkCellA1Format";
 import { calculateSum } from "./calculateSum";
+import { calculateMultiply } from "./calculateMultiply";
 
 export function computeSpreadsheet(
   spreadsheets: SpreadsheetData
@@ -49,8 +49,14 @@ export function computeSpreadsheet(
                 0,
                 formula.indexOf("(")
               );
-              if (formulaFunction == "SUM") {
+              if (formulaFunction === "SUM") {
                 const computedCell: CellValue = calculateSum(
+                  formula,
+                  spreadsheet
+                );
+                computedRow.push(computedCell);
+              } else if (formulaFunction === "MULTIPLY") {
+                const computedCell: CellValue = calculateMultiply(
                   formula,
                   spreadsheet
                 );
