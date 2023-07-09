@@ -45,7 +45,9 @@ export function computeSpreadsheet(
                 0,
                 formula.indexOf("(")
               );
-              var formulaElements = formula.split(/[(,)]/).map((item) => item.trim()); // remove empty spaces and separate elements
+              var formulaElements = formula
+                .split(/[(,)]/)
+                .map((item) => item.trim()); // remove empty spaces and separate elements
               formulaElements.shift(); // remove function name
               formulaElements.pop(); // remove empty space
               if (formulaFunction === "SUM") {
@@ -56,37 +58,37 @@ export function computeSpreadsheet(
                 computedRow.push(computedCell);
               } else if (formulaFunction === "MULTIPLY") {
                 const computedCell: CellValue = calculateMultiply(
-                  formula,
+                  formulaElements,
                   spreadsheet
                 );
                 computedRow.push(computedCell);
               } else if (formulaFunction === "DIVIDE") {
                 const computedCell: CellValue = calculateDivide(
-                  formula,
+                  formulaElements,
                   spreadsheet
                 );
                 computedRow.push(computedCell);
               } else if (formulaFunction === "GT") {
                 const computedCell: CellValue = calculateGT(
-                  formula,
+                  formulaElements,
                   spreadsheet
                 );
                 computedRow.push(computedCell);
               } else if (formulaFunction === "EQ") {
                 const computedCell: CellValue = calculateEQ(
-                  formula,
+                  formulaElements,
                   spreadsheet
                 );
                 computedRow.push(computedCell);
               } else if (formulaFunction === "NOT") {
                 const computedCell: CellValue = calculateNOT(
-                  formula,
+                  formulaElements,
                   spreadsheet
                 );
                 computedRow.push(computedCell);
               } else if (formulaFunction === "AND") {
                 const computedCell: CellValue = calculateAND(
-                  formula,
+                  formulaElements,
                   spreadsheet
                 );
                 computedRow.push(computedCell);
