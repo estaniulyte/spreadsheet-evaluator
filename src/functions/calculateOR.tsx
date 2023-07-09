@@ -3,16 +3,16 @@ import { SpreadsheetObject } from "../types/index.d";
 import { getLetterIndex } from "./getLetterIndex";
 import { checkCellA1Format } from "./checkCellA1Format";
 
-export function calculateAND(
+export function calculateOR(
   formula: string,
   spreadsheet: SpreadsheetObject
 ): boolean | string {
-  var andElements = formula.split(/[(,)]/).map((item) => item.trim()); // remove empty spaces
-  andElements.shift(); // remove function name
-  andElements.pop(); // remove empty space
+  var orElements = formula.split(/[(,)]/).map((item) => item.trim()); // remove empty spaces
+  orElements.shift(); // remove function name
+  orElements.pop(); // remove empty space
 
-  let isTrue: boolean | string = true;
-  andElements.forEach(function (item) {
+  let isTrue: boolean | string = false;
+  orElements.forEach(function (item) {
     if (checkCellA1Format(item)) {
       var val =
         spreadsheet.data[parseInt(item.charAt(1)) - 1][
@@ -20,9 +20,9 @@ export function calculateAND(
         ];
       if (typeof val !== "boolean")
         isTrue = "#ERROR: one of provided values is not boolean";
-      else if (val === false) isTrue = false;
+      else if (val === true) isTrue = true;
     } else if (Boolean(item)) {
-      if (Boolean(item) === false) isTrue = false;
+      if (Boolean(item) === true) isTrue = true;
     }
   });
   return isTrue;

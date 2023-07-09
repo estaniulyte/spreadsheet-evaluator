@@ -15,6 +15,7 @@ import { calculateGT } from "./calculateGT";
 import { calculateEQ } from "./calculateEQ";
 import { calculateNOT } from "./calculateNOT";
 import { calculateAND } from "./calculateAND";
+import { calculateOR } from "./calculateOR";
 
 export function computeSpreadsheet(
   spreadsheets: SpreadsheetData
@@ -81,6 +82,12 @@ export function computeSpreadsheet(
                 computedRow.push(computedCell);
               } else if (formulaFunction === "AND") {
                 const computedCell: CellValue = calculateAND(
+                  formula,
+                  spreadsheet
+                );
+                computedRow.push(computedCell);
+              } else if (formulaFunction === "OR") {
+                const computedCell: CellValue = calculateOR(
                   formula,
                   spreadsheet
                 );
