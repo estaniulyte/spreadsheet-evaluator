@@ -3,12 +3,9 @@ import { SpreadsheetObject } from "../types/index.d";
 import { getLetterIndex } from "./getLetterIndex";
 
 export function calculateGT(
-  formula: string,
+  gtElements: Array<string>,
   spreadsheet: SpreadsheetObject
 ): boolean | string {
-  var gtElements = formula.split(/[(,)]/).map((item) => item.trim()); // remove empty spaces
-  gtElements.shift(); // remove function name
-  gtElements.pop(); // remove empty space
   if (gtElements.length !== 2)
     return "#ERROR: Two values excepted. Got " + gtElements.length;
   var firstValue: number = 0;

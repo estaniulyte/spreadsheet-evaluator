@@ -4,13 +4,9 @@ import { getLetterIndex } from "./getLetterIndex";
 import { checkCellA1Format } from "./checkCellA1Format";
 
 export function calculateAND(
-  formula: string,
+  andElements: Array<string>,
   spreadsheet: SpreadsheetObject
 ): boolean | string {
-  var andElements = formula.split(/[(,)]/).map((item) => item.trim()); // remove empty spaces
-  andElements.shift(); // remove function name
-  andElements.pop(); // remove empty space
-
   let isTrue: boolean | string = true;
   andElements.forEach(function (item) {
     if (checkCellA1Format(item)) {
