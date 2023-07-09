@@ -16,6 +16,7 @@ import { calculateEQ } from "./calculateEQ";
 import { calculateNOT } from "./calculateNOT";
 import { calculateAND } from "./calculateAND";
 import { calculateOR } from "./calculateOR";
+import { calculateIF } from "./calculateIF";
 
 export function computeSpreadsheet(
   spreadsheets: SpreadsheetData
@@ -91,6 +92,12 @@ export function computeSpreadsheet(
                 computedRow.push(computedCell);
               } else if (formulaFunction === "OR") {
                 const computedCell: CellValue = calculateOR(
+                  formulaElements,
+                  spreadsheet
+                );
+                computedRow.push(computedCell);
+              } else if (formulaFunction === "IF") {
+                const computedCell: CellValue = calculateIF(
                   formula,
                   spreadsheet
                 );
