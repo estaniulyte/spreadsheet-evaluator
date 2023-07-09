@@ -44,9 +44,12 @@ export function computeSpreadsheet(
                 0,
                 formula.indexOf("(")
               );
+              var formulaElements = formula.split(/[(,)]/).map((item) => item.trim()); // remove empty spaces and separate elements
+              formulaElements.shift(); // remove function name
+              formulaElements.pop(); // remove empty space
               if (formulaFunction === "SUM") {
                 const computedCell: CellValue = calculateSum(
-                  formula,
+                  formulaElements,
                   spreadsheet
                 );
                 computedRow.push(computedCell);
