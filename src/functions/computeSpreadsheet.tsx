@@ -17,6 +17,7 @@ import { calculateNOT } from "./calculateNOT";
 import { calculateAND } from "./calculateAND";
 import { calculateOR } from "./calculateOR";
 import { calculateIF } from "./calculateIF";
+import { calculateConcat } from "./calculateConcat";
 
 export function computeSpreadsheet(
   spreadsheets: SpreadsheetData
@@ -100,6 +101,12 @@ export function computeSpreadsheet(
                 computedRow.push(computedCell);
               } else if (formulaFunction === "IF") {
                 const computedCell: CellValue = calculateIF(
+                  formula,
+                  spreadsheet
+                );
+                computedRow.push(computedCell);
+              } else if (formulaFunction === "CONCAT") {
+                const computedCell: CellValue = calculateConcat(
                   formula,
                   spreadsheet
                 );
