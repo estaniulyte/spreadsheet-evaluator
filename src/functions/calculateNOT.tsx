@@ -10,6 +10,7 @@ export function calculateNOT(
     return "#ERROR: One value excepted. Got " + notElements.length;
   var value: boolean = false;
   if (parseInt(notElements[0])) value = Boolean(notElements[0]);
-  else value = getItemFromSpreadsheet(spreadsheet, notElements[0]) as boolean;
+  else
+    value = getItemFromSpreadsheet(spreadsheet, notElements[0]) as boolean;
   return !value;
 }
