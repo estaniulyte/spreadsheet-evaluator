@@ -18,6 +18,7 @@ import { calculateAND } from "./calculateAND";
 import { calculateOR } from "./calculateOR";
 import { calculateIF } from "./calculateIF";
 import { calculateConcat } from "./calculateConcat";
+import { resolveSpreadsheet } from "./resolveSpreadsheet";
 
 export function computeSpreadsheet(
   spreadsheets: SpreadsheetData
@@ -30,17 +31,17 @@ export function computeSpreadsheet(
       data: [],
     };
     spreadsheet.data.forEach(function (row, index) {
-      const computedRow: CellValue[] = [];
+      var computedRow: CellValue[] = [];
 
       row.forEach(function (cell) {
         if (typeof cell === "string" && cell.startsWith("=")) {
           try {
             const formula = cell.slice(1); // Remove the "=" sign from formulas
-            // check if cell is A1 notation
             if (checkCellA1Format(formula)) {
-              computedRow.push(
-                spreadsheet.data[index][getLetterIndex(formula.charAt(0))]
-              );
+              resolveSpreadsheet(spreadsheet);
+              var cell: number | string | boolean =
+                spreadsheet.data[index][getLetterIndex(formula.charAt(0))];
+              computedRow.push(cell);
             } else {
               const formulaFunction = formula.substring(
                 0,
