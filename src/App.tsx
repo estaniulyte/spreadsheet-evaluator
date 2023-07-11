@@ -1,10 +1,9 @@
 import './App.css';
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 
 import { SpreadsheetData } from "./types/index.d";
 
-import { computeSpreadsheet } from "./functions/computeSpreadsheet";
+import { apiInstance } from "./api/api";
 
 function App() {
   const [spreadsheetData, setSpreadsheetData] = useState<SpreadsheetData>([]);
@@ -13,9 +12,7 @@ function App() {
   useEffect(() => {
     const fetchSpreadsheetData = async () => {
       try {
-        const response = await axios.get(
-          "https://www.wix.com/_serverless/hiring-task-spreadsheet-evaluator/sheets"
-        );
+        const response = await apiInstance.get("/sheets");
         const fetchedData = response.data;
         console.log(fetchedData.sheets);
         setSpreadsheetData(fetchedData.sheets);
