@@ -39,9 +39,9 @@ export function computeSpreadsheet(
             const formula = cell.slice(1); // Remove the "=" sign from formulas
             if (checkCellA1Format(formula)) {
               resolveSpreadsheet(spreadsheet);
-              var cell: number | string | boolean =
+              var cellData: number | string | boolean =
                 spreadsheet.data[index][getLetterIndex(formula.charAt(0))];
-              computedRow.push(cell);
+              computedRow.push(cellData);
             } else {
               const formulaFunction = formula.substring(
                 0,
