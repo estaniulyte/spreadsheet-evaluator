@@ -3,6 +3,8 @@ import React, { useEffect, useState } from "react";
 
 import { SpreadsheetData } from "./types/index.d";
 
+import { computeSpreadsheet } from "./functions/computeSpreadsheet";
+
 import { apiInstance } from "./api/api";
 
 function App() {
@@ -14,7 +16,6 @@ function App() {
       try {
         const response = await apiInstance.get("/sheets");
         const fetchedData = response.data;
-        console.log(fetchedData.sheets);
         setSpreadsheetData(fetchedData.sheets);
       } catch (error) {
         console.error("Error fetching spreadsheet data:", error);
@@ -25,10 +26,25 @@ function App() {
   }, []);
 
   useEffect(() => {
-    const result = computeSpreadsheet(spreadsheetData);
-    console.log(result);
-    setComputedResult(result);
+    var computedData = computeSpreadsheet(spreadsheetData);
+    setComputedResult(computedData);
   }, [spreadsheetData]);
+
+  const submitResults = async () => {
+    const data = {
+      email: "e.staniulyte98@gmail.com",
+      results: computedResult,
+    };
+
+    await apiInstance
+      .post("/verify/eyJ0YWdzIjpbXX0", data)
+      .then((response) => {
+        console.log("Request successful:", response.data);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  };
 
   return (
     <div className="App">
