@@ -113,7 +113,7 @@ export function computeSpreadsheet(
                 );
                 computedRow.push(computedCell);
               } else {
-                computedRow.push("!!NOT RESOLVED Yet!!");
+                computedRow.push("#ERROR: Not resolved yet.");
               }
             }
           } catch (error) {
