@@ -7,6 +7,8 @@ If Cors errors appear after Submiting data, install [Moesif Origin & CORS Change
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+<img width="1459" alt="Screenshot 2023-07-22 at 16 26 20" src="https://github.com/estaniulyte/spreadsheet-evaluator/assets/43463977/e03ab908-407e-4d9b-bee5-bc8405d8f359">
+
 ## Start Project
 
 To start project run:
